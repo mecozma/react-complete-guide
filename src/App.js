@@ -13,7 +13,16 @@ class App extends Component {
   }
 
   switchNameHandler = () => {
-    console.log('I was clicked');
+    // console.log('I was clicked');
+    // DON'T DO THIS this.state.persons[0].name = 'Marius';
+    // The bellow method merges the object with the object already existent in the State
+    this.setState({
+      persons: [
+        {name: 'Marius', age: 33},
+        {name: 'Andrei', age: 30},
+        {name: 'Virginia', age: 29}
+      ]
+    })
   }
 
   render() {
