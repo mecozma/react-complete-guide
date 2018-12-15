@@ -12,15 +12,15 @@ class App extends Component {
     ]
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     // console.log('I was clicked');
     // DON'T DO THIS this.state.persons[0].name = 'Marius';
     // The bellow method merges the object with the object already existent in the State
     this.setState({
       persons: [
-        {name: 'Marius', age: 33},
+        {name: newName, age: 33},
         {name: 'Andrei', age: 30},
-        {name: 'Virginia', age: 29}
+        {name: newName, age: 29}
       ]
     })
   }
@@ -29,10 +29,18 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hi! I'm a React App!</h1>
-        <button onClick={this.switchNameHandler}>Switch name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} >My Hobbies: JavaScript</Person >
+        
+        <button onClick={() => this.switchNameHandler('Moris')}>Switch name</button> 
+        <Person
+         name={this.state.persons[0].name} age={this.state.persons[0].age} />
+        <Person
+         name={this.state.persons[1].name} age={this.state.persons[1].age}/>
+        <Person
+         name={this.state.persons[2].name} age={this.state.persons[2].age}
+         /*the annonymus function passed to onClick methid above could be inefficient sometimes
+          *because of that bind syntax is preferable
+         */
+         click={this.switchNameHandler.bind(this, 'Miranda')} >My Hobbies: JavaScript</Person >
       </div>
     );
   }
