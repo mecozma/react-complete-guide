@@ -9,7 +9,8 @@ class App extends Component {
       {name: 'Eduard', age: 33},
       {name: 'Andrei', age: 31},
       {name: 'Carla', age: 29}
-    ]
+    ],
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -35,6 +36,15 @@ class App extends Component {
     })
   }
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState (
+      {
+        showPersons: !doesShow
+      }
+    )
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -50,18 +60,26 @@ class App extends Component {
         
         <button
           style={style}
-          onClick={() => this.switchNameHandler('Moris')}>Switch name</button> 
-        <Person
-          name={this.state.persons[0].name} age={this.state.persons[0].age}
-          changed={this.nameChangedHandler} />
-        <Person
-          name={this.state.persons[1].name} age={this.state.persons[1].age}/>
-        <Person
-          name={this.state.persons[2].name} age={this.state.persons[2].age}
-          /*the annonymus function passed to onClick methid above could be inefficient sometimes
-            *because of that bind syntax is preferable
-          */
-          click={this.switchNameHandler.bind(this, 'Miranda')} >My Hobbies: JavaScript</Person >
+          onClick={this.togglePersonsHandler}>Switch name</button> 
+          {
+            this.state.showPersons ?
+              <div>
+                <Person
+                name={this.state.persons[0].name}
+                age={this.state.persons[0].age}
+                changed={this.nameChangedHandler} />
+                <Person
+                name={this.state.persons[1].name} 
+                age={this.state.persons[1].age}/>
+                <Person
+                name={this.state.persons[2].name} 
+                age={this.state.persons[2].age}
+                /*the annonymus function passed to onClick methid above could be inefficient sometimes
+                  *because of that bind syntax is preferable
+                */
+                click={this.switchNameHandler.bind(this, 'Miranda')} >My Hobbies: JavaScript</Person >
+              </div> : null
+          }
       </div>
     );
   }
