@@ -59,21 +59,10 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
           <div>
-          <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          changed={this.nameChangedHandler} />
-          <Person
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}/>
-          <Person
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}
-          /*the annonymus function passed to onClick methid above could be inefficient sometimes
-            *because of that bind syntax is preferable
-          */
-          click={this.switchNameHandler.bind(this, 'Miranda')} >My Hobbies: JavaScript</Person >
-      </div>
+            {this.state.persons.map((elem) => {
+              return <Person name={elem.name} age={this.age} />
+            })}
+          </div>
       );
     }
 
