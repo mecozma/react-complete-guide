@@ -13,19 +13,6 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    // console.log('I was clicked');
-    // DON'T DO THIS this.state.persons[0].name = 'Marius';
-    // The bellow method merges the object with the object already existent in the State
-    this.setState({
-      persons: [
-        {name: newName, age: 33},
-        {name: 'Andrei', age: 30},
-        {name: newName, age: 29}
-      ]
-    })
-  }
-
   nameChangedHandler = (event) => {
     this.setState( {
       persons: [
@@ -34,6 +21,12 @@ class App extends Component {
         {name: 'Carla', age: 29}
       ]
     })
+  }
+
+  deletePersonHandler = (personIndex) => {
+      const persons = this.state.persons;
+      persons.splice(personIndex, 1);
+      this.setState({persons: persons})
   }
 
   togglePersonsHandler = () => {
@@ -59,8 +52,11 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
           <div>
-            {this.state.persons.map((elem) => {
-              return <Person name={elem.name} age={this.age} />
+            {this.state.persons.map((person, index) => {
+              return <Person 
+              click={() => this.deletePersonHandler(index)}
+              name={person.name} 
+              age={person.age} />
             })}
           </div>
       );
