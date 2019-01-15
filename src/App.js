@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -86,21 +86,23 @@ class App extends Component {
     // Changing the <p> styless by adding classes dynamically
     let classes = [];
 
-    if (this.state.persons.length >= 2) {
+    if (this.state.persons.length <= 2) {
         classes.push('red');
     }
     if (this.state.persons.length < 2)  {
       classes.push('bold');
     }
     return (
-      <div className="App">
-        <h1>Hi! I'm a React App!</h1>
-        <p className={classes.join(' ')}>This is a paragraph</p>
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons List</button> 
-          {persons}
-       </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi! I'm a React App!</h1>
+          <p className={classes.join(' ')}>This is a paragraph</p>
+          <button
+            style={style}
+            onClick={this.togglePersonsHandler}>Toggle Persons List</button> 
+            {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
