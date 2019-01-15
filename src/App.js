@@ -72,6 +72,11 @@ class App extends Component {
             })}
           </div>
       );
+      style.backgroundColor = 'red';
+      
+    } else {
+      style.backgroundColor = "green";
+      style.color = 'white';
     }
 
     return (
@@ -80,7 +85,7 @@ class App extends Component {
         
         <button
           style={style}
-          onClick={this.togglePersonsHandler}>Switch name</button> 
+          onClick={this.togglePersonsHandler}>Toggle Persons List</button> 
           {persons}
        </div>
     );
