@@ -78,11 +78,19 @@ class App extends Component {
       style.backgroundColor = "green";
       style.color = 'white';
     }
+    // Changing the <p> styless by adding classes dynamically
+    let classes = [];
 
+    if (this.state.persons.length >= 2) {
+        classes.push('red');
+    }
+    if (this.state.persons.length < 2)  {
+      classes.push('bold');
+    }
     return (
       <div className="App">
         <h1>Hi! I'm a React App!</h1>
-        
+        <p className={classes.join(' ')}>This is a paragraph</p>
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons List</button> 
