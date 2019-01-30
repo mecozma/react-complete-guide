@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Cockpit.css';
-import Auxiliary from '../../hoc/Auxiliary';
+import Aux from '../../hoc/Auxiliary';
 
 const cockpit = (props) => {
   // Changing the <p> styless by adding classes dynamically
@@ -18,13 +18,13 @@ const cockpit = (props) => {
     assignedClasses.push(classes.bold);
   }
   return (
-    <Auxiliary>
+    <Aux>
           <h1>Hi! I'm a React App!</h1>
           <p className={assignedClasses.join(' ')}>This is a paragraph</p>
           <button
             className={btnClasses}
             onClick={props.clicked}>Toggle Persons List</button> 
-    </Auxiliary>
+    </Aux>
   )
 }
 
