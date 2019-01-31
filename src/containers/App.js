@@ -17,7 +17,8 @@ class App extends PureComponent {
         {id: ';lkj',name: 'Andrei', age: 31},
         {id: '5344',name: 'Carla', age: 29}
       ],
-      showPersons: false
+      showPersons: false,
+      toggleClicked: 0
     }
   }
   componentWillMount() {
@@ -69,7 +70,12 @@ class App extends PureComponent {
       // spread operator gets a copy of the array, as .slice method does above.
       const persons = [...this.state.persons];
       persons.splice(personIndex, 1);
-      this.setState({persons: persons})
+      this.setState( (prevState, props) =>{
+        return {
+          persons: persons,
+          toggleClicked: prevState.toggleClicked + 1
+        }
+      });
   }
 
   togglePersonsHandler = () => {
